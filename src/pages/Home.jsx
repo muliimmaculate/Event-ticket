@@ -7,6 +7,7 @@ const featuredEvents = [
     title: "Music Concert",
     date: "2024-07-15",
     location: "City Hall",
+    badge: "Popular",
     image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -14,6 +15,7 @@ const featuredEvents = [
     title: "Art Exhibition",
     date: "2024-08-01",
     location: "Art Gallery",
+    badge: "New",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -21,6 +23,7 @@ const featuredEvents = [
     title: "Tech Conference",
     date: "2024-09-10",
     location: "Convention Center",
+    badge: "Sold Out",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -28,6 +31,7 @@ const featuredEvents = [
     title: "Food Festival",
     date: "2024-10-05",
     location: "Central Park",
+    badge: "Featured",
     image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -35,6 +39,7 @@ const featuredEvents = [
     title: "Startup Pitch Night",
     date: "2024-11-12",
     location: "Tech Hub",
+    badge: "Trending",
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -42,6 +47,7 @@ const featuredEvents = [
     title: "Charity Run",
     date: "2024-12-01",
     location: "Riverside Park",
+    badge: "Charity",
     image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80"
   },
 ];
@@ -117,90 +123,59 @@ const latestNews = [
 
 const Home = () => {
   const navigate = useNavigate();
-  const featured = featuredEvents[0];
   return (
-    <div className="page-container">
-      <section className="hero">
-        <h1 className="hero-title">Effortless Event Booking</h1>
-        <p className="hero-subtitle">Discover, book, and manage tickets for the best events around you. Simple. Secure. Seamless.</p>
-        <a href="/events" className="hero-cta">Browse Events</a>
+    <div className="home-advanced">
+      {/* Hero Section */}
+      <section className="hero-modern gradient-bg">
+        <div className="hero-modern-flex">
+          <div className="hero-modern-content">
+            <h1 className="hero-modern-title">Effortless Event Booking</h1>
+            <p className="hero-modern-subtitle">Discover, book, and manage tickets for the best events around you. Simple. Secure. Seamless.</p>
+            <a href="/events" className="hero-modern-cta">Browse Events</a>
+          </div>
+          <div className="hero-modern-illustration">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Event Illustration" />
+          </div>
+        </div>
+        <svg className="hero-modern-wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="url(#heroModernWave)" d="M0,80 C360,160 1080,0 1440,80 L1440,120 L0,120 Z"/><defs><linearGradient id="heroModernWave" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse"><stop stopColor="#2563eb"/><stop offset="1" stopColor="#3b82f6"/></linearGradient></defs></svg>
       </section>
-      <hr className="section-divider" />
-      <main className="home-main compact-main">
-        {/* Featured Event Banner */}
-        <section className="home-featured-banner compact-section">
-          <div className="home-featured-banner-inner compact-card">
-            <img src={featured.image} alt={featured.title} className="home-featured-img" />
-            <div className="home-featured-content">
-              <span className="home-featured-badge">Featured Event</span>
-              <h2 className="home-featured-title">{featured.title}</h2>
-              <p className="home-featured-meta">{featured.date} &middot; {featured.location}</p>
-              <button className="home-featured-btn" onClick={() => navigate(`/events/${featured.id}`)}>Book Now</button>
-            </div>
-          </div>
-        </section>
-        {/* How It Works Section */}
-        <section className="home-section home-how-it-works compact-section">
-          <h2 className="home-section-title">How It Works</h2>
-          <div className="home-card-grid compact-grid">
-            {howItWorks.map((item, idx) => (
-              <div key={idx} className="home-card home-how-card compact-card">
-                <span className="home-how-icon">{item.icon}</span>
-                <h4 className="home-how-title">{item.title}</h4>
-                <p className="home-how-desc">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-        {/* Why Choose Us */}
-        <section className="home-section home-why-choose compact-section">
-          <h2 className="home-section-title">Why Choose Us</h2>
-          <div className="home-card-grid compact-grid">
-            {whyChooseUs.map((item, idx) => (
-              <div key={idx} className="home-card home-why-card compact-card">
-                <span className="home-why-icon">{item.icon}</span>
-                <h4 className="home-why-title">{item.title}</h4>
-                <p className="home-why-desc">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+      <main className="home-main-advanced">
         {/* Featured Events */}
-        <section className="home-section home-featured-events compact-section">
-          <h2 className="home-section-title">Featured Events</h2>
-          <div className="home-featured-grid compact-grid">
-            {featuredEvents.map(event => (
-              <div key={event.id} className="home-featured-card compact-card" onClick={() => navigate(`/events/${event.id}`)}>
-                <img src={event.image} alt={event.title} className="home-featured-card-img" />
-                <div className="home-featured-card-body">
-                  <h3 className="home-featured-card-title">{event.title}</h3>
-                  <p className="home-featured-card-meta">{event.date} &middot; {event.location}</p>
+        <section className="section-advanced">
+          <h2 className="section-advanced-title">Featured Events</h2>
+          <div className="events-advanced-grid">
+            {featuredEvents.slice(0, 6).map(event => (
+              <div key={event.id} className="event-advanced-card" onClick={() => navigate(`/events/${event.id}`)}>
+                <div className="event-advanced-img-wrap">
+                  <img src={event.image} alt={event.title} className="event-advanced-img" />
+                  <span className={`event-advanced-badge ${event.badge.toLowerCase().replace(' ', '-')}`}>{event.badge}</span>
+                </div>
+                <div className="event-advanced-body">
+                  <h3 className="event-advanced-title">{event.title}</h3>
+                  <p className="event-advanced-meta">{event.date} &middot; {event.location}</p>
+                  <button className="event-advanced-btn">View Details</button>
                 </div>
               </div>
             ))}
           </div>
         </section>
-        {/* Testimonials */}
-        <section className="home-section home-testimonials compact-section">
-          <h2 className="home-section-title">What Our Users Say</h2>
-          <div className="home-testimonial-grid compact-grid">
-            {testimonials.map((t, idx) => (
-              <div key={idx} className="home-testimonial-card compact-card">
-                <img src={t.avatar} alt={t.name} className="home-testimonial-avatar" />
-                <p className="home-testimonial-quote">“{t.quote}”</p>
-                <span className="home-testimonial-name">{t.name}</span>
-              </div>
-            ))}
-          </div>
+        {/* Newsletter Signup */}
+        <section className="section-advanced newsletter-advanced-section">
+          <h2 className="section-advanced-title">Stay Updated</h2>
+          <form className="newsletter-advanced-form">
+            <input className="newsletter-advanced-input" type="email" placeholder="Enter your email" />
+            <button className="newsletter-advanced-btn" type="submit">Subscribe</button>
+          </form>
         </section>
-        {/* Latest News */}
-        <section className="home-section home-latest-news compact-section">
-          <h2 className="home-section-title">Latest News</h2>
-          <div className="home-news-list compact-grid">
-            {latestNews.map((news, idx) => (
-              <div key={idx} className="home-news-item compact-card">
-                <h4 className="home-news-title">{news.title}</h4>
-                <p className="home-news-desc">{news.desc}</p>
+        {/* Testimonials */}
+        <section className="section-advanced">
+          <h2 className="section-advanced-title">What Our Users Say</h2>
+          <div className="testimonials-advanced-grid">
+            {testimonials.map((t, idx) => (
+              <div key={idx} className="testimonial-advanced-card">
+                <img src={t.avatar} alt={t.name} className="testimonial-advanced-avatar" />
+                <p className="testimonial-advanced-quote">“{t.quote}”</p>
+                <span className="testimonial-advanced-name">{t.name}</span>
               </div>
             ))}
           </div>
