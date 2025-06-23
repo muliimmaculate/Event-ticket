@@ -1,85 +1,29 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+const eventCategories = [
+  { name: "Weddings", color: "#f472b6", img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" },
+  { name: "Birthdays", color: "#fbbf24", img: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&w=800&q=80" },
+  { name: "Corporate Events", color: "#34d399", img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80" },
+  { name: "Concerts", color: "#60a5fa", img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80" },
+  { name: "Exhibitions", color: "#a78bfa", img: "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=80" },
+  { name: "Catering & Decor", color: "#f87171", img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80" },
+];
+
 const featuredEvents = [
-  {
-    id: 1,
-    title: "Music Concert",
-    date: "2024-07-15",
-    location: "City Hall",
-    badge: "Popular",
-    category: "Music",
-    description: "A night of amazing live music with top artists and a vibrant crowd. Enjoy an unforgettable concert experience!",
-    image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 2,
-    title: "Art Exhibition",
-    date: "2024-08-01",
-    location: "Art Gallery",
-    badge: "New",
-    category: "Art",
-    description: "Explore the latest in modern art. See stunning paintings, sculptures, and installations from emerging artists.",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 3,
-    title: "Tech Conference",
-    date: "2024-09-10",
-    location: "Convention Center",
-    badge: "Sold Out",
-    category: "Tech",
-    description: "Join industry leaders in tech innovation. Talks, workshops, and networking with top tech professionals.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 4,
-    title: "Food Festival",
-    date: "2024-10-05",
-    location: "Central Park",
-    badge: "Featured",
-    category: "Food",
-    description: "Taste delicious dishes from around the world. Live cooking shows, food trucks, and more!",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 5,
-    title: "Startup Pitch Night",
-    date: "2024-11-12",
-    location: "Tech Hub",
-    badge: "Trending",
-    category: "Business",
-    description: "Watch startups pitch their ideas to investors. Network with entrepreneurs and discover the next big thing!",
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 6,
-    title: "Charity Run",
-    date: "2024-12-01",
-    location: "Riverside Park",
-    badge: "Charity",
-    category: "Sports",
-    description: "Run for a cause! Join our annual charity run and help raise funds for local organizations.",
-    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80"
-  },
+  { title: "Grand Wedding Package", price: "$2500", img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80", location: "City Banquet Hall", rating: 4.9 },
+  { title: "Corporate Conference", price: "$1200", img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80", location: "Downtown Center", rating: 4.7 },
+  { title: "Outdoor Concert Venue", price: "$3800", img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80", location: "Open Air Arena", rating: 4.8 },
+  { title: "Exhibition Hall", price: "$1500", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80", location: "Expo Center", rating: 4.6 },
+  { title: "Birthday Celebration", price: "$2000", img: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80", location: "Party Place", rating: 4.9 },
+  { title: "Outdoor Concert Venue", price: "$2500", img: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=800&q=80", location: "Central Park", rating: 4.8 },
 ];
 
 const testimonials = [
-  {
-    name: "Alex Kim",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    quote: "Booking my concert tickets was a breeze! The site is beautiful and easy to use.",
-  },
-  {
-    name: "Maria Lopez",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    quote: "I love the event recommendations and the modern design. Highly recommended!",
-  },
-  {
-    name: "James Smith",
-    avatar: "https://randomuser.me/api/portraits/men/65.jpg",
-    quote: "The booking process is so smooth and the events are always top-notch.",
-  },
+  { name: "James Williams", img: "https://randomuser.me/api/portraits/men/32.jpg", rating: 5, text: "Booking was seamless and the event was unforgettable! Highly recommend." },
+  { name: "Janet Brown", img: "https://randomuser.me/api/portraits/women/44.jpg", rating: 5, text: "Great platform, easy to use and excellent support." },
+  { name: "Albert Evans", img: "https://randomuser.me/api/portraits/men/65.jpg", rating: 4, text: "Lots of event options and the booking process is quick." },
+  { name: "Jenny Wilson", img: "https://randomuser.me/api/portraits/women/68.jpg", rating: 5, text: "Loved the experience! Will book again for sure." },
 ];
 
 const howItWorks = [
@@ -133,66 +77,74 @@ const latestNews = [
   },
 ];
 
+const partners = [
+  "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+  "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
+  "https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png",
+  "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
+  "https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_TV_2015.png"
+];
+
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <div className="home-advanced">
-      {/* Hero Section */}
-      <section className="hero-modern gradient-bg">
-        <div className="hero-modern-flex">
-          <div className="hero-modern-content">
-            <h1 className="hero-modern-title">Effortless Event Booking</h1>
-            <p className="hero-modern-subtitle">Discover, book, and manage tickets for the best events around you. Simple. Secure. Seamless.</p>
-            <a href="/events" className="hero-modern-cta">Browse Events</a>
-          </div>
-          <div className="hero-modern-illustration">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Event Illustration" />
-          </div>
+    <div className="homepage-v2">
+      {/* Hero Banner */}
+      <section className="hero-v2">
+        <img className="hero-bg-img-v2" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1800&q=80" alt="Event Hall Banner" />
+        <div className="hero-overlay-v2" />
+        <div className="hero-content-v2">
+          <h1>Book Your Dream Event <span className="hero-accent-v2">With Ease</span></h1>
+          <p>Find and book venues, organizers, and services in just a few clicks. Create unforgettable moments for any occasion.</p>
         </div>
-        <svg className="hero-modern-wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="url(#heroModernWave)" d="M0,80 C360,160 1080,0 1440,80 L1440,120 L0,120 Z"/><defs><linearGradient id="heroModernWave" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse"><stop stopColor="#2563eb"/><stop offset="1" stopColor="#3b82f6"/></linearGradient></defs></svg>
       </section>
-      <main>
-        {/* Featured Events */}
-        <section className="section-advanced">
-          <h2 className="section-advanced-title">Featured Events</h2>
-          <div className="events-advanced-grid">
-            {featuredEvents.slice(0, 6).map(event => (
-              <div key={event.id} className="event-advanced-card" onClick={() => navigate(`/events/${event.id}`, { state: { event } })}>
-                <div className="event-advanced-img-wrap">
-                  <img src={event.image} alt={event.title} className="event-advanced-img" />
-                  <span className={`event-advanced-badge ${event.badge.toLowerCase().replace(' ', '-')}`}>{event.badge}</span>
-                </div>
-                <div className="event-advanced-body">
-                  <h3 className="event-advanced-title">{event.title}</h3>
-                  <p className="event-advanced-meta">{event.date} &middot; {event.location}</p>
-                  <button className="event-advanced-btn">View Details</button>
-                </div>
+
+      {/* Event Categories */}
+      <section className="categories-v2">
+        <h2>Event Categories</h2>
+        <div className="categories-grid-v2">
+          {eventCategories.map((cat, idx) => (
+            <div className="category-card-v2" key={idx} style={{ background: cat.color + '22' }}>
+              <img src={cat.img} alt={cat.name} />
+              <div className="category-card-label-v2" style={{ background: cat.color }}>{cat.name}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Events */}
+      <section className="featured-v2">
+        <h2>Featured Events & Venues</h2>
+        <div className="featured-grid-v2">
+          {featuredEvents.map((ev, idx) => (
+            <div className="featured-card-v2" key={idx}>
+              <img src={ev.img} alt={ev.title} />
+              <div className="featured-card-body-v2">
+                <h3>{ev.title}</h3>
+                <div className="featured-meta-v2">{ev.location}</div>
+                <div className="featured-price-v2">{ev.price}</div>
+                <div className="featured-rating-v2">{'★'.repeat(Math.round(ev.rating))}<span className="featured-rating-num-v2">{ev.rating}</span></div>
+                <button className="featured-btn-v2">Book Now</button>
               </div>
-            ))}
-          </div>
-        </section>
-        {/* Newsletter Signup */}
-        <section className="section-advanced newsletter-advanced-section">
-          <h2 className="section-advanced-title">Stay Updated</h2>
-          <form className="newsletter-advanced-form">
-            <input className="newsletter-advanced-input" type="email" placeholder="Enter your email" />
-            <button className="newsletter-advanced-btn" type="submit">Subscribe</button>
-          </form>
-        </section>
-        {/* Testimonials */}
-        <section className="section-advanced">
-          <h2 className="section-advanced-title">What Our Users Say</h2>
-          <div className="testimonials-advanced-grid">
-            {testimonials.map((t, idx) => (
-              <div key={idx} className="testimonial-advanced-card">
-                <img src={t.avatar} alt={t.name} className="testimonial-advanced-avatar" />
-                <p className="testimonial-advanced-quote">“{t.quote}”</p>
-                <span className="testimonial-advanced-name">{t.name}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="testimonials-v2">
+        <h2>What Our Clients Say</h2>
+        <div className="testimonials-grid-v2">
+          {testimonials.map((t, idx) => (
+            <div className="testimonial-card-v2" key={idx}>
+              <img src={t.img} alt={t.name} />
+              <div className="testimonial-rating-v2">{'★'.repeat(t.rating)}</div>
+              <p className="testimonial-text-v2">{t.text}</p>
+              <div className="testimonial-name-v2">{t.name}</div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
