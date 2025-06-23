@@ -8,6 +8,8 @@ const featuredEvents = [
     date: "2024-07-15",
     location: "City Hall",
     badge: "Popular",
+    category: "Music",
+    description: "A night of amazing live music with top artists and a vibrant crowd. Enjoy an unforgettable concert experience!",
     image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -16,6 +18,8 @@ const featuredEvents = [
     date: "2024-08-01",
     location: "Art Gallery",
     badge: "New",
+    category: "Art",
+    description: "Explore the latest in modern art. See stunning paintings, sculptures, and installations from emerging artists.",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -24,6 +28,8 @@ const featuredEvents = [
     date: "2024-09-10",
     location: "Convention Center",
     badge: "Sold Out",
+    category: "Tech",
+    description: "Join industry leaders in tech innovation. Talks, workshops, and networking with top tech professionals.",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -32,6 +38,8 @@ const featuredEvents = [
     date: "2024-10-05",
     location: "Central Park",
     badge: "Featured",
+    category: "Food",
+    description: "Taste delicious dishes from around the world. Live cooking shows, food trucks, and more!",
     image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -40,6 +48,8 @@ const featuredEvents = [
     date: "2024-11-12",
     location: "Tech Hub",
     badge: "Trending",
+    category: "Business",
+    description: "Watch startups pitch their ideas to investors. Network with entrepreneurs and discover the next big thing!",
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -48,6 +58,8 @@ const featuredEvents = [
     date: "2024-12-01",
     location: "Riverside Park",
     badge: "Charity",
+    category: "Sports",
+    description: "Run for a cause! Join our annual charity run and help raise funds for local organizations.",
     image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80"
   },
 ];
@@ -139,13 +151,13 @@ const Home = () => {
         </div>
         <svg className="hero-modern-wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="url(#heroModernWave)" d="M0,80 C360,160 1080,0 1440,80 L1440,120 L0,120 Z"/><defs><linearGradient id="heroModernWave" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse"><stop stopColor="#2563eb"/><stop offset="1" stopColor="#3b82f6"/></linearGradient></defs></svg>
       </section>
-      <main className="home-main-advanced">
+      <main>
         {/* Featured Events */}
         <section className="section-advanced">
           <h2 className="section-advanced-title">Featured Events</h2>
           <div className="events-advanced-grid">
             {featuredEvents.slice(0, 6).map(event => (
-              <div key={event.id} className="event-advanced-card" onClick={() => navigate(`/events/${event.id}`)}>
+              <div key={event.id} className="event-advanced-card" onClick={() => navigate(`/events/${event.id}`, { state: { event } })}>
                 <div className="event-advanced-img-wrap">
                   <img src={event.image} alt={event.title} className="event-advanced-img" />
                   <span className={`event-advanced-badge ${event.badge.toLowerCase().replace(' ', '-')}`}>{event.badge}</span>

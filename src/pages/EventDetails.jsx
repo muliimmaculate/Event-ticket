@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 const dummyEvents = [
   {
@@ -7,7 +7,7 @@ const dummyEvents = [
     title: "Music Concert",
     date: "2024-07-15",
     location: "City Hall",
-    description: "A night of amazing live music!",
+    description: "A night of amazing live music with top artists and a vibrant crowd. Enjoy an unforgettable concert experience!",
     image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80",
     category: "Music",
     badge: "Popular"
@@ -17,7 +17,7 @@ const dummyEvents = [
     title: "Art Exhibition",
     date: "2024-08-01",
     location: "Art Gallery",
-    description: "Explore the latest in modern art.",
+    description: "Explore the latest in modern art. See stunning paintings, sculptures, and installations from emerging artists.",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80",
     category: "Art",
     badge: "New"
@@ -27,7 +27,7 @@ const dummyEvents = [
     title: "Tech Conference",
     date: "2024-09-10",
     location: "Convention Center",
-    description: "Join industry leaders in tech innovation.",
+    description: "Join industry leaders in tech innovation. Talks, workshops, and networking with top tech professionals.",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80",
     category: "Tech",
     badge: "Sold Out"
@@ -37,8 +37,11 @@ const dummyEvents = [
 const EventDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [showModal, setShowModal] = useState(false);
-  const event = dummyEvents.find(e => e.id === Number(id));
+
+  // Prefer event from location.state, fallback to dummyEvents
+  const event = location.state?.event || dummyEvents.find(e => e.id === Number(id));
 
   if (!event) {
     return <div className="event-details-container"><h2>Event not found</h2></div>;
